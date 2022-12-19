@@ -13,6 +13,12 @@
       "@styles/*": [
         "src/styles/*"
       ],
+      "@data/*": [
+        "src/data/*"
+      ],
+      "@js/*": [
+        "src/js/*"
+      ],
       "@types": [
         "src/types"
       ],
