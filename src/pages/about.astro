@@ -1,6 +1,7 @@
 ---
 import Link from "@components/Link.astro";
 import MainLayout from "@layouts/MainLayout.astro";
+import { Image } from "@astrojs/image/components";
 
 const title = "About";
 const description = "Some stuff about me";
@@ -8,11 +9,15 @@ const description = "Some stuff about me";
 
 <MainLayout title={title} description={description}>
   <section class="container about" aria-label="About Me">
-    <img
+    <Image
       src="/images/headshot.jpg"
       alt="My Headshot"
       width="200"
-      height="330"
+      height="250"
+      format="avif"
+      fit="cover"
+      quality={80}
+      aspectRatio="5:2"
     />
     <div class="container">
       <h1 class="h1">My Blog</h1>
