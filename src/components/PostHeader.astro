@@ -1,0 +1,42 @@
+---
+import { Image } from "@astrojs/image/components";
+import { formatDate, sluglify } from "@js/utils";
+
+type Props = {
+  title: string;
+  date: string;
+  category: string;
+  author: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+};
+
+const { category, title, author, date, image } = Astro.props as Props;
+---
+
+<header>
+  <div class="container">
+    <small>
+      <a href={`/category/${sluglify(category)}`} class="badge">
+        {category}
+      </a>
+    </small>
+    <h1 class="h2">{title}</h1>
+    <p>
+      by <a href={`/author/${author}`}>{author}</a> · {formatDate(date)}
+    </p>
+  </div>
+  <Image
+    src={image.src}
+    alt={image.alt}
+    width="1200"
+    height="600"
+    format="avif"
+    fit="cover"
+    quality={80}
+    aspectRatio="5:2"
+    class="hero-image"
+  />
+</header>

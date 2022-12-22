@@ -1,0 +1,29 @@
+---
+import PostHeader from "@components/PostHeader.astro";
+import MainLayout from "./MainLayout.astro";
+
+type Frontmatter = {
+  title: string;
+  description: string;
+  date: string;
+  category: string;
+  author: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+};
+
+const { frontmatter } = Astro.props;
+const { title, description, category, author, date, image }: Frontmatter = frontmatter;
+---
+
+<MainLayout {title} {description}>
+  <PostHeader {title} {date} {category} {image} {author} />
+    <div class="post-content">
+      <div class="content">
+        <slot />
+      </div>
+      <div class="sidebar"></div>
+    </div>
+</MainLayout>
