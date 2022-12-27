@@ -1,16 +1,25 @@
 ---
+import PostCard from "@components/PostCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
+import type { Frontmatter } from "src/types/types";
 
-const title = "Blog";
+const title = "New Blog Posts";
+const allPost = await Astro.glob<Frontmatter>("./*.md");
 ---
 
 <MainLayout title={title}>
-	<ul>
-		<li>
-			<a href="./post-1/">Post 1</a>
-		</li>
-		<li>
-			<a href="./post-2/">Post 2</a>
-		</li>
-	</ul>
+	<section class="container" aria-label={title}>
+		<h1 class="h1">{title}</h1>
+		<div class="post-container">
+			{
+				allPost.map((post) => (
+					<PostCard
+						frontmatter={post.frontmatter}
+						url={post.url}
+						tagType="h2"
+					/>
+				))
+			}
+		</div>
+	</section>
 </MainLayout>
