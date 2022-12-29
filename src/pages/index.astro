@@ -1,10 +1,48 @@
 ---
+import { Image } from "@astrojs/image/components";
+import Link from "@components/Link.astro";
+import PostCard from "@components/PostCard.astro";
+import { formatBlogPosts } from "@js/utils";
 import MainLayout from "@layouts/MainLayout.astro";
+import type { Frontmatter } from "src/types/types";
 
 const title = "Home";
 const description = "My Awesome Blog!";
+const allPost = await Astro.glob<Frontmatter>("./blog/*.md");
+const formattedPosts = formatBlogPosts(allPost, {
+	limit: 3,
+});
 ---
 
 <MainLayout title={title} description={description}>
-	<h1>{title}</h1>
+	<section class="container about" aria-label="About Me">
+		<Image
+			src="/images/headshot.jpg"
+			alt="My Headshot"
+			width="150"
+			height="200"
+		/>
+		<div class="content">
+			<h1 class="h1">My Blog</h1>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus,
+				aut. Doloribus asperiores cum ad non?
+			</p>
+			<Link href="/about/" style="secondary" text="About Me" />
+		</div>
+	</section>
+	<section class="container" aria-label={title}>
+		<h2 class="h1">New Blog Posts</h2>
+		<div class="post-container">
+			{
+				formattedPosts.map((post) => (
+					<PostCard
+						frontmatter={post.frontmatter}
+						url={post.url}
+						tagType="h3"
+					/>
+				))
+			}
+		</div>
+	</section>
 </MainLayout>
