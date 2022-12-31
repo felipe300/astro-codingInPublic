@@ -1,6 +1,6 @@
 ---
 import { Image } from "@astrojs/image/components";
-import { formatDate, sluglify } from "@js/utils";
+import { formatDate, slugify } from "@js/utils";
 import type { Frontmatter } from "src/types/types";
 import Link from "./Link.astro";
 
@@ -12,7 +12,7 @@ const Tag = tagType;
 
 <article class="card">
   <small>
-    <a href={`/category/${sluglify(category)}`} class="badge">
+    <a href={`/category/${slugify(category)}`} class="badge">
       {category}
     </a>
   </small>
@@ -33,7 +33,9 @@ const Tag = tagType;
       <a href={url}>{title}</a>
     </Tag>
     <small>
-      by <a href={`/author/${author}`}>{author}</a> · {formatDate(date)}
+      by <a href={`/author/${slugify(author)}`}>{author}</a> · {
+        formatDate(date)
+      }
     </small>
   </div>
   <p>{description}</p>

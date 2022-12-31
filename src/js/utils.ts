@@ -1,7 +1,7 @@
 import type { MarkdownInstance } from "astro"
 import type { Frontmatter } from "src/types/types"
 
-export function sluglify (text: string) {
+export function slugify (text: string) {
   return text
     .toString()
     .toLowerCase()

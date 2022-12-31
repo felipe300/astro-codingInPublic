@@ -1,6 +1,6 @@
 ---
 import { Image } from "@astrojs/image/components";
-import { formatDate, sluglify } from "@js/utils";
+import { formatDate, slugify } from "@js/utils";
 import type { Frontmatter } from "src/types/types";
 
 const { title, author, date, image, category } = Astro.props as Frontmatter;
@@ -9,13 +9,15 @@ const { title, author, date, image, category } = Astro.props as Frontmatter;
 <header>
   <div class="container">
     <small>
-      <a href={`/category/${sluglify(category)}`} class="badge">
+      <a href={`/category/${slugify(category)}`} class="badge">
         {category}
       </a>
     </small>
     <h1 class="h2">{title}</h1>
     <p>
-      by <a href={`/author/${author}`}>{author}</a> · {formatDate(date)}
+      by <a href={`/author/${slugify(author)}`}>{author}</a> · {
+        formatDate(date)
+      }
     </p>
   </div>
   <Image
