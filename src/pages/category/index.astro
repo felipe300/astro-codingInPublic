@@ -1,0 +1,14 @@
+---
+import CategoryCloud from "@components/CategoryCloud.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const title = "Categories";
+const description = "List of categories";
+---
+
+<MainLayout title={title} description={description}>
+  <aside class="container"  aria-label="Blog categories">
+    <h2 class="h3">Blog {title}</h2>
+    <CategoryCloud />
+  </aside>
+</MainLayout>

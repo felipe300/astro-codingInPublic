@@ -1,0 +1,14 @@
+---
+import AuthorCloud from "@components/AuthorCloud.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const title = "Authors";
+const description = "List of authors";
+---
+
+<MainLayout title={title} description={description}>
+  <aside class="container" aria-label="Blog categories">
+    <h2 class="h3">{title}</h2>
+    <AuthorCloud />
+  </aside>
+</MainLayout>

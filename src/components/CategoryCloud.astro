@@ -1,0 +1,32 @@
+---
+import { formatBlogPosts, slugify } from "@js/utils";
+import type { Frontmatter } from "src/types/types";
+
+const allPosts = await Astro.glob<Frontmatter>("../pages/blog/*.md");
+const formattedPosts = formatBlogPosts(allPosts);
+
+const allCategories = formattedPosts
+  .map((cat) => cat.frontmatter.category.toLowerCase());
+const processsedCategories = allCategories.reduce((acc, category) => {
+  const value: number = acc[category as keyof typeof acc] || 0;
+
+  return {
+    ...acc,
+    [category]: value + 1,
+  };
+}, {});
+
+const { showCount } = Astro.props;
+---
+
+<ul class="categories">
+  {
+    Object.entries(processsedCategories).map(([key, val]) => (
+      <li>
+        <a class="badge" href={`/category/${slugify(key)}`}>
+          {key} {showCount && `(${val})`}
+        </a>
+      </li>
+    ))
+  }
+</ul>
