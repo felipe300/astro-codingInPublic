@@ -12,14 +12,18 @@ const { title, author, date, image, description, category }: Frontmatter =
 
 const allPost = await Astro.glob<Frontmatter>("../pages/blog/*.md");
 const formattedPosts = formatBlogPosts(allPost, {
-  sortByDate: false
+  sortByDate: false,
 });
 
-const relatedPosts = formattedPosts.filter(
-  (post) => post.frontmatter.category.toLowerCase() === category.toLowerCase() 
-    && post.frontmatter.title !== title).slice(0, 3);
+const relatedPosts = formattedPosts
+  .filter(
+    (post) =>
+      post.frontmatter.category.toLowerCase() === category.toLowerCase() &&
+      post.frontmatter.title !== title
+  )
+  .slice(0, 3);
 
-// I DONT KNOW WHY IT DOESNT SHOW ANYTHING IN THE CONSOLE 
+// I DONT KNOW WHY IT DOESNT SHOW ANYTHING IN THE CONSOLE
 //console.log('related posts =>' + relatedPosts);
 ---
 
@@ -35,11 +39,12 @@ const relatedPosts = formattedPosts.filter(
         <CategoryCloud />
       </aside>
       {
-      relatedPosts.length  > 0 && (
-        <aside class="container" aria-label="Related posts">
-          <h2 class="h3">Related Posts</h2>
-          <RelatedPosts {relatedPosts} />
-        </aside>)
+        relatedPosts.length > 0 && (
+          <aside class="container" aria-label="Related posts">
+            <h2 class="h3">Related Posts</h2>
+            <RelatedPosts {relatedPosts} />
+          </aside>
+        )
       }
     </div>
   </div>

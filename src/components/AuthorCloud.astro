@@ -5,8 +5,9 @@ import type { Frontmatter } from "src/types/types";
 const allPosts = await Astro.glob<Frontmatter>("../pages/blog/*.md");
 const formattedPosts = formatBlogPosts(allPosts);
 
-const allAuthors = formattedPosts
-  .map((au) => au.frontmatter.author.toLowerCase());
+const allAuthors = formattedPosts.map((au) =>
+  au.frontmatter.author.toLowerCase()
+);
 const processsedAuthors = allAuthors.reduce((acc, author) => {
   const value: number = acc[author as keyof typeof acc] || 0;
 
