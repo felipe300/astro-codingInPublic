@@ -5,10 +5,6 @@ import MainLayout from "@layouts/MainLayout.astro";
 import type { Frontmatter } from "src/types/types";
 import type { MarkdownInstance } from "astro";
 
-interface Params extends Record<string, string | number | undefined> {
-  category: string;
-}
-
 export async function getStaticPaths() {
   const allPost = await Astro.glob<Frontmatter>("../blog/*.md");
   const formattedPosts = formatBlogPosts(allPost);
@@ -30,19 +26,15 @@ export async function getStaticPaths() {
   });
 }
 
-const { category } = Astro.params;
-const { name } = Astro.props;
-
-const { author } = Astro.params as Params;
 const { categoryName, posts } = Astro.props as {
   categoryName: string;
   posts: MarkdownInstance<Frontmatter>[];
 };
 ---
 
-<MainLayout title={name}>
-  <section class="container" aria-label={`Posts about ${name}`}>
-    <h1 class="h1">Post about <span>{name}</span></h1>
+<MainLayout title={categoryName}>
+  <section class="container" aria-label={`Posts about ${categoryName}`}>
+    <h1 class="h1">Post about <span>{categoryName}</span></h1>
     <div class="post-container">
       {
         posts.map((post) => (

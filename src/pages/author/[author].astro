@@ -5,10 +5,6 @@ import MainLayout from "@layouts/MainLayout.astro";
 import type { Frontmatter } from "src/types/types";
 import type { MarkdownInstance } from "astro";
 
-interface Params extends Record<string, string | number | undefined> {
-  author: string;
-}
-
 export async function getStaticPaths() {
   const allPosts = await Astro.glob<Frontmatter>("../blog/*.md");
   const formattedPosts = formatBlogPosts(allPosts);
@@ -29,7 +25,6 @@ export async function getStaticPaths() {
   });
 }
 
-const { author } = Astro.params as Params;
 const { authorName, posts } = Astro.props as {
   authorName: string;
   posts: MarkdownInstance<Frontmatter>[];
