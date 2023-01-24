@@ -6,7 +6,7 @@ import { formatBlogPosts } from "@js/utils";
 import type { Frontmatter } from "src/types/types";
 import MainLayout from "./MainLayout.astro";
 
-const { frontmatter } = Astro.props;
+const { frontmatter, robots } = Astro.props;
 const { title, author, date, image, description, category }: Frontmatter =
   frontmatter;
 
@@ -27,7 +27,7 @@ const relatedPosts = formattedPosts
 //console.log('related posts =>' + relatedPosts);
 ---
 
-<MainLayout {title} {description}>
+<MainLayout {title} {description} image={frontmatter.image} {robots}>
   <PostHeader {title} {date} {category} {image} {author} />
   <div class="post-content">
     <div class="content">
