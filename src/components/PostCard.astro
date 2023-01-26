@@ -4,9 +4,9 @@ import { formatDate, slugify } from "@js/utils";
 import type { Frontmatter } from "src/types/types";
 import Link from "./Link.astro";
 
-const { frontmatter, url, tagType } = Astro.props;
+const { data, url, tagType } = Astro.props;
 const { title, author, date, image, category, description } =
-  frontmatter as Frontmatter;
+  data as Frontmatter;
 const Tag = tagType;
 ---
 
@@ -16,7 +16,7 @@ const Tag = tagType;
       {category}
     </a>
   </small>
-  <a href={url} aria-hidden="true" tabindex="-1">
+  <a href={`/blog/${url}`} aria-hidden="true" tabindex="-1">
     <Image
       src={image.src}
       alt={image.alt}
@@ -30,7 +30,7 @@ const Tag = tagType;
   </a>
   <div class="content">
     <Tag class="h3">
-      <a href={url}>{title}</a>
+      <a href={`/blog/${url}`}>{title}</a>
     </Tag>
     <small>
       by <a href={`/author/${slugify(author)}`}>{author}</a> · {
@@ -39,5 +39,5 @@ const Tag = tagType;
     </small>
   </div>
   <p>{description}</p>
-  <Link text="Read Post" href={url} style="secondary" />
+  <Link text="Read Post" href={`/blog/${url}`} style="secondary" />
 </article>

@@ -1,0 +1,23 @@
+import rss from "@astrojs/rss"
+import { formatBlogPosts } from "../js/utils"
+import { CollectionEntry, getCollection } from "astro:content"
+
+const postImportResult = await getCollection("blog")
+const posts: CollectionEntry<"blog">[] = formatBlogPosts(postImportResult)
+
+export const get = () =>
+  rss({
+    stylesheet: "/rss/styles.xsl",
+    title: "My Astro Blog",
+    description: "My Awesome Blog!",
+    site: import.meta.env.SITE,
+    items: posts.map((post) => ({
+      link: `/blog/${post.slug}`,
+      title: post.data.title,
+      pubDate: post.data.date,
+      description: post.data.description,
+      customData: `
+        <author>${post.data.author}</author>
+      `,
+    })),
+  })

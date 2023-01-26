@@ -4,30 +4,14 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@layouts/*": [
-        "src/layouts/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@data/*": [
-        "src/data/*"
-      ],
-      "@js/*": [
-        "src/js/*"
-      ],
-      "@types": [
-        "src/types"
-      ],
-      "@utils": [
-        "src/utils"
-      ],
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@styles/*": ["src/styles/*"],
+      "@data/*": ["src/data/*"],
+      "@js/*": ["src/js/*"],
+      "@types": ["src/types"],
+      "@utils": ["src/utils"]
     },
-    "types": [
-      "@astrojs/image/client"
-    ]
+    "types": ["@astrojs/image/client"]
   }
 }

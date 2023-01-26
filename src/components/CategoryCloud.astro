@@ -1,13 +1,11 @@
 ---
 import { formatBlogPosts, slugify } from "@js/utils";
-import type { Frontmatter } from "src/types/types";
+import { getCollection, CollectionEntry } from "astro:content";
 
-const allPosts = await Astro.glob<Frontmatter>("../pages/blog/*.md");
-const formattedPosts = formatBlogPosts(allPosts);
+const allPosts = await getCollection("blog");
+const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
 
-const allCategories = formattedPosts.map((cat) =>
-  cat.frontmatter.category.toLowerCase()
-);
+const allCategories = formattedPosts.map((cat) => cat.data.category);
 const processsedCategories = allCategories.reduce((acc, category) => {
   const value: number = acc[category as keyof typeof acc] || 0;
 
@@ -17,7 +15,9 @@ const processsedCategories = allCategories.reduce((acc, category) => {
   };
 }, {});
 
-const { showCount } = Astro.props;
+const { showCount } = Astro.props as {
+  showCount: number;
+};
 ---
 
 <ul class="categories">

@@ -1,0 +1,58 @@
+---
+import CategoryCloud from "@components/CategoryCloud.astro";
+import PostHeader from "@components/PostHeader.astro";
+import RelatedPosts from "@components/RelatedPosts.astro";
+import { formatBlogPosts } from "@js/utils";
+import MainLayout from "@layouts/MainLayout.astro";
+import { CollectionEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allPost = await getCollection("blog");
+  const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPost);
+
+  return formattedPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as {
+  robost: any;
+  post: CollectionEntry<"blog">;
+};
+const { title, author, date, image, description, category } = post.data;
+const { Content } = await post.render();
+
+const allPost = await getCollection("blog");
+const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPost);
+const relatedPosts = formattedPosts
+  .filter(
+    (post) =>
+      post.data.category.toLowerCase() === category.toLowerCase() &&
+      post.data.title !== title
+  )
+  .slice(0, 3);
+---
+
+<MainLayout {title} {description} image={post.data.image}>
+  <PostHeader {title} {date} {category} {image} {author} {description} />
+  <div class="post-content">
+    <div class="content">
+      <Content />
+    </div>
+    <div class="sidebar">
+      <aside class="container" aria-label="Blog categories">
+        <h2 class="h3">Blog Categories</h2>
+        <CategoryCloud />
+      </aside>
+      {
+        relatedPosts.length > 0 && (
+          <aside class="container" aria-label="Related posts">
+            <h2 class="h3">Related Posts</h2>
+            <RelatedPosts {relatedPosts} />
+          </aside>
+        )
+      }
+    </div>
+  </div>
+</MainLayout>

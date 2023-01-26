@@ -2,47 +2,39 @@
 import PostCard from "@components/PostCard.astro";
 import { formatBlogPosts, slugify } from "@js/utils";
 import MainLayout from "@layouts/MainLayout.astro";
-import type { Frontmatter } from "src/types/types";
-import type { MarkdownInstance } from "astro";
+import { getCollection, CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const allPost = await Astro.glob<Frontmatter>("../blog/*.md");
-  const formattedPosts = formatBlogPosts(allPost);
-  const allPosts = [
-    ...new Set(formattedPosts.map((post) => post.frontmatter.category).flat()),
+  const allPosts = await getCollection("blog");
+  const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
+  const allCategories = [
+    ...new Set(formattedPosts.map((post) => post.data.category).flat()),
   ];
-
-  return allPosts.map((category) => {
+  return allCategories.map((category) => {
     const categoryPosts = formattedPosts.filter(
-      (post) => post.frontmatter.category === category
+      (post) => post.data.category === category
     );
+
     return {
       params: { category: slugify(category) },
-      props: {
-        categoryName: category,
-        posts: categoryPosts,
-      },
+      props: { name: category, posts: categoryPosts },
     };
   });
 }
 
-const { categoryName, posts } = Astro.props as {
-  categoryName: string;
-  posts: MarkdownInstance<Frontmatter>[];
+const { name, posts } = Astro.props as {
+  name: string;
+  posts: CollectionEntry<"blog">[];
 };
 ---
 
-<MainLayout title={categoryName}>
-  <section class="container" aria-label={`Posts about ${categoryName}`}>
-    <h1 class="h1">Post about <span>{categoryName}</span></h1>
+<MainLayout title={name}>
+  <section class="container" aria-label={`Posts about ${name}`}>
+    <h1 class="h1">Post about <span>{name}</span></h1>
     <div class="post-container">
       {
         posts.map((post) => (
-          <PostCard
-            frontmatter={post.frontmatter}
-            url={post.url}
-            tagType="h2"
-          />
+          <PostCard data={post.data} url={post.slug} tagType="h2" />
         ))
       }
     </div>
