@@ -1,5 +1,4 @@
 ---
-import { Image } from "@astrojs/image/components";
 import Link from "@components/Link.astro";
 import PostCard from "@components/PostCard.astro";
 import { formatBlogPosts } from "@js/utils";
@@ -18,7 +17,7 @@ const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPost, {
 
 <MainLayout title={title} description={description}>
 	<section class="container about" aria-label="About Me">
-		<Image
+		<img
 			src="/images/headshot.jpg"
 			alt="My Headshot"
 			width="150"
