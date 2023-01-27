@@ -1,6 +1,7 @@
 ---
 import { formatDate, slugify } from "@js/utils";
 import Link from "./Link.astro";
+import { Image } from "@astrojs/image/components";
 
 const { data, url, tagType } = Astro.props;
 const { title, author, date, image, category, description } = data;
@@ -14,7 +15,17 @@ const Tag = tagType;
     </a>
   </small>
   <a href={`/blog/${url}`} aria-hidden="true" tabindex="-1">
-    <img src={image.src} alt={image.alt} />
+    <!-- <img src={image.src} alt={image.alt} /> -->
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={400}
+      height={250}
+      format="webp"
+      fit="cover"
+      quality={80}
+      aspectRatio="4:1"
+    />
   </a>
   <div class="content">
     <Tag class="h3">
