@@ -7,8 +7,8 @@ import { Image } from "@astrojs/image/components";
 
 import { getCollection, CollectionEntry } from "astro:content";
 
-const title = "Home";
-const description = "My Awesome Blog!";
+const title: string = "Home";
+const description: string = "My Awesome Blog!";
 const allPost = await getCollection("blog");
 
 const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPost, {
