@@ -6,6 +6,10 @@ import { formatBlogPosts } from "@js/utils";
 import MainLayout from "@layouts/MainLayout.astro";
 import { CollectionEntry, getCollection } from "astro:content";
 
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
 export async function getStaticPaths() {
   const allPost = await getCollection("blog");
   const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPost);
@@ -16,10 +20,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const { post } = Astro.props as {
-  robost: any;
-  post: CollectionEntry<"blog">;
-};
+const { post } = Astro.props;
 const { title, author, date, image, description, category } = post.data;
 const { Content } = await post.render();
 

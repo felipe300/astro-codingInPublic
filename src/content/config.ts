@@ -1,4 +1,4 @@
-import { z, defineCollection } from "astro:content";
+import { z, defineCollection } from "astro:content"
 
 const blog = defineCollection({
   schema: z.object({
@@ -18,6 +18,6 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     category: z.enum(["CSS", "Reference Docs", "Astro", "General"]),
   }),
-});
+})
 
-export const collections = { blog };
+export const collections = { blog }
