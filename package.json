@@ -14,14 +14,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/image": "^0.13.0",
-    "@astrojs/rss": "^2.1.0",
-    "@astrojs/sitemap": "^1.0.0",
-    "astro": "^2.0.1",
+    "@astrojs/image": "^0.16.0",
+    "@astrojs/rss": "^2.2.0",
+    "@astrojs/sitemap": "^1.2.0",
+    "astro": "^2.1.0",
     "astro-icon": "^0.8.0",
     "postcss": "^8.4.21",
-    "postcss-preset-env": "^7.8.3",
-    "sharp": "^0.31.3"
+    "postcss-preset-env": "^8.0.1",
+    "sharp": "^0.31.3",
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
     "ts-standard": "^12.0.2"
