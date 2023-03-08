@@ -19,10 +19,9 @@ const { title, author, date, image, category } = Astro.props;
       }
     </p>
   </div>
-  <!-- <img src={image.src} alt={image.alt} class="hero-image" /> -->
   <Image
-    src={image.src}
-    alt={image.alt}
+    src={image}
+    alt={title}
     width={400}
     height={250}
     format="webp"

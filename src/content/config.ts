@@ -5,10 +5,8 @@ const blog = defineCollection({
     title: z.string(),
     date: z.date(),
     author: z.enum(["Anna Dixon", "Victoria Greenfelder", "Darnell McClure"]),
-    image: z.object({
-      src: z.string(),
-      alt: z.string(),
-    }),
+    image: z.string(),
+    
     description: z
       .string()
       .max(
