@@ -2,10 +2,12 @@
 title: Running out of sample post ideas
 date: 2022-11-25
 author: Victoria Greenfelder
-image: "/images/post-2.jpg"
-description: Sometimes you just run out of ideas for sample blog posts. It’s no one’s fault, it’s just the way it is.
+image: /images/post-2.jpg
+description: Sometimes you just run out of ideas for sample blog posts. It’s no one’s
+  fault, it’s just the way it is.
 draft: false
 category: General
+slug: running-sample-post-ideas
 ---
 
 Nisi duis ex aliqua eu officia eiusmod duis magna pariatur. Irure laborum qui

@@ -2,10 +2,13 @@
 title: Why is this CSS so weird?
 date: 2022-12-09
 author: Anna Dixon
-image: "/images/post-4.jpg"
-description: The global css file for this site is a bit different than I’d write things normally, but I’m trying to keep you from having to write a bunch of random classes.
+image: /images/post-4.jpg
+description: The global css file for this site is a bit different than I’d write things
+  normally, but I’m trying to keep you from having to write a bunch of random
+  classes.
 draft: false
 category: CSS
+slug: css-weird
 ---
 
 Nisi duis ex aliqua eu officia eiusmod duis magna pariatur. Irure laborum qui

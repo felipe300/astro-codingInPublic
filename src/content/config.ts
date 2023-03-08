@@ -6,7 +6,6 @@ const blog = defineCollection({
     date: z.date(),
     author: z.enum(["Anna Dixon", "Victoria Greenfelder", "Darnell McClure"]),
     image: z.string(),
-    
     description: z
       .string()
       .max(
@@ -14,7 +13,7 @@ const blog = defineCollection({
         "For best SEO results, plase keep the description unde 160 characters."
       ),
     draft: z.boolean().default(false),
-    category: z.enum(["CSS", "Reference Docs", "Astro", "General"]),
+    category: z.enum(["CSS", "Reference Docs", "Astro", "General"])
   }),
 })
 

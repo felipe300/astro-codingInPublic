@@ -2,10 +2,12 @@
 title: Beginning with CSS
 date: 2022-12-03
 author: Darnell McClure
-image: "/images/post-3.jpg"
-description: CSS is a great way to style your website. In fact, there are no alternatives! Learn how to use it here.
+image: /images/post-3.jpg
+description: CSS is a great way to style your website. In fact, there are no alternatives!
+  Learn how to use it here.
 draft: false
 category: CSS
+slug: beginning-css
 ---
 
 Nisi duis ex aliqua eu officia eiusmod duis magna pariatur. Irure laborum qui

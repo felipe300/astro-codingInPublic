@@ -1,4 +1,4 @@
-import type { getCollection, CollectionEntry } from "astro:content"
+import type { CollectionEntry } from "astro:content"
 
 export function slugify (text: string) {
   return text
