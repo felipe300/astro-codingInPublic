@@ -1,12 +1,12 @@
 {
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
   "frontMatter.framework.startCommand": "pnpm run dev",
-  "frontMatter.preview.host": "localhost:3000",
+  "frontMatter.preview.host": "http://localhost:3000",
   "frontMatter.taxonomy.contentTypes": [
     {
       "name": "default",
       "pageBundle": false,
-      "previewPath": null,
+      "previewPath": "'blog'",
       "fields": [
         {
           "title": "title",
@@ -22,7 +22,8 @@
         {
           "title": "author",
           "name": "author",
-          "type": "string"
+          "type": "string",
+          "taxonomyLimit": 1
         },
         {
           "title": "image",
@@ -43,8 +44,8 @@
         {
           "title": "category",
           "name": "category",
-          "type": "tags",
-          "taxonomyLimit": 3
+          "type": "category",
+          "taxonomyLimit": 1
         }
       ]
     }
@@ -55,7 +56,20 @@
     {
       "title": "blog",
       "path": "[[workspace]]/src/content/blog",
-      "contentTypes": ["default"]
+      "contentTypes": [
+        "default"
+      ]
     }
+  ],
+  "frontMatter.taxonomy.tags": [
+    "CSS",
+    "Reference Docs",
+    "Astro",
+    "General"
+  ],
+  "frontMatter.taxonomy.author": [
+    "Anna Dixon",
+    "Victoria Greenfelder",
+    "Darnell McClure"
   ]
 }
